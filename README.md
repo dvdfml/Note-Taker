@@ -32,3 +32,7 @@ Once saved, the note will be listed on the left side. To view the content again,
 To delete a note, simply click the trash icon next to the note title.
 
 ![Dark Theme Screenshot](./assets/images/deleting_note_screenshot.png)
+
+## Website
+
+[https://note-taker-ijfm.onrender.com/](https://note-taker-ijfm.onrender.com/)
