@@ -4,7 +4,7 @@ const notes = require('express').Router();
 const uuid = require('../helpers/uuid');
 
 // Helper functions for reading and writing to the JSON file
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const { readFromFile, readAndAppend, readAndDelete } = require('../helpers/fsUtils');
 
 // This API route is a GET Route for retrieving all the notes
 notes.get('/', (req, res) => {
@@ -34,3 +34,17 @@ notes.post('/', (req, res) => {
   });
 
 module.exports = notes;
+
+notes.delete('/:id', (req, res) => {
+    console.info(`${req.method} request received to delete a note`);
+
+    const id = req.params.id;
+
+    if (id) {
+        readAndDelete(id, './db/db.json');
+        res.json(`Note deleted successfully 🚀`);
+    } else {
+        res.error('Error in deleting note');
+    }
+
+});

@@ -31,4 +31,27 @@ const readAndAppend = (content, file) => {
   });
 };
 
-module.exports = { readFromFile, writeToFile, readAndAppend };
+const readAndDelete = (id, file) => {
+  fs.readFile(file, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      let parsedData = JSON.parse(data);
+
+      for (const i in parsedData) {
+        if (id === parsedData[i].id) {
+          parsedData.splice(i, 1);
+          break;
+        }
+      }
+      fs.writeFile(file, JSON.stringify(parsedData, null, 4), (err) => {
+        if (err) {
+          console.log(err);
+        };
+      });
+      console.info(`\nObject with id: ${id} deleted from ${file}`);
+    }
+  });
+}
+
+module.exports = { readFromFile, writeToFile, readAndAppend, readAndDelete };
